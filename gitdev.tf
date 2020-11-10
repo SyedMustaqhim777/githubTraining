@@ -37,17 +37,6 @@ resource "aws_subnet" "mySubnet" {
 }
 
 
-## 3. Create a Subnet Table (second)
-#----------------------------------
-resource "aws_subnet" "mySubnet2" {
-  vpc_id            = aws_vpc.myVPC.id
-  cidr_block        = "10.0.2.0/1"
-  availability_zone = "us-east-1a"
-
-  tags = {
-    Name = "Subnet-main2"
-  }
-}
 
 
 ## 4. Create Security group to allow port 22, 80, 443
