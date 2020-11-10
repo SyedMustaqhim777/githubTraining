@@ -37,17 +37,6 @@ resource "aws_subnet" "mySubnet" {
 }
 
 
-## 3. Create a Subnet Table (second)
-#----------------------------------
-resource "aws_subnet" "mySubnet2" {
-  vpc_id            = aws_vpc.myVPC.id
-  cidr_block        = "10.0.2.0/1"
-  availability_zone = "us-east-1a"
-
-  tags = {
-    Name = "Subnet-main2"
-  }
-}
 
 
 ## 4. Create Security group to allow port 22, 80, 443
@@ -141,16 +130,16 @@ output "server_public_ip" {
 
 
 
-# ## 8. Create a Load Balancer
-# #----------------------------------------------------------
-# resource "aws_lb" "MyLoadBalancer" {
-#   name               = "lb-main"
-#   internal           = false
-#   load_balancer_type = "application"
-#   security_groups    = [aws_security_group.allow_web.id]
-#   subnets            = [aws_subnet.mySubnet.id, aws_subnet.mySubnet2.id]
+## 8. Create a Load Balancer
+#----------------------------------------------------------
+resource "aws_lb" "MyLoadBalancer" {
+  name               = "lb-main"
+  internal           = false
+  load_balancer_type = "application"
+  security_groups    = [aws_security_group.allow_web.id]
+  subnets            = [aws_subnet.mySubnet.id, aws_subnet.mySubnet2.id]
 
-#   tags = {
-#     Name = "DevOps"
-#   }
-# }
+  tags = {
+    Name = "DevOps"
+  }
+}
