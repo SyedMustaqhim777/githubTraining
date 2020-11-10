@@ -130,16 +130,16 @@ output "server_public_ip" {
 
 
 
-# ## 8. Create a Load Balancer
-# #----------------------------------------------------------
-# resource "aws_lb" "MyLoadBalancer" {
-#   name               = "lb-main"
-#   internal           = false
-#   load_balancer_type = "application"
-#   security_groups    = [aws_security_group.allow_web.id]
-#   subnets            = [aws_subnet.mySubnet.id, aws_subnet.mySubnet2.id]
+## 8. Create a Load Balancer
+#----------------------------------------------------------
+resource "aws_lb" "MyLoadBalancer" {
+  name               = "lb-main"
+  internal           = false
+  load_balancer_type = "application"
+  security_groups    = [aws_security_group.allow_web.id]
+  subnets            = [aws_subnet.mySubnet.id, aws_subnet.mySubnet2.id]
 
-#   tags = {
-#     Name = "DevOps"
-#   }
-# }
+  tags = {
+    Name = "DevOps"
+  }
+}
